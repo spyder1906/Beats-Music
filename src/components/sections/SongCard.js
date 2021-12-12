@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
-import { GlobalContext } from '../GlobalState';
-
+import React, { useContext } from "react";
+import { GlobalContext } from "../GlobalState";
 import {
   Card,
   makeStyles,
@@ -10,15 +9,15 @@ import {
   Typography,
   LinearProgress,
   Container,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
 const useStyles = makeStyles({
   card: {
     width: 300,
     height: 236,
-    display: 'inline-block',
-    margin: '10px',
-    whiteSpace: 'pre-wrap',
+    display: "inline-block",
+    margin: "10px",
+    whiteSpace: "pre-wrap",
   },
   media: {
     height: 160,
@@ -27,7 +26,7 @@ const useStyles = makeStyles({
 const MediaCard = ({ songs, categotyTitle }) => {
   const [{}, dispatch] = useContext(GlobalContext);
   const setCurrentVideoSnippet = (data) => {
-    dispatch({ type: 'setCurrentVideoSnippet', snippet: data });
+    dispatch({ type: "setCurrentVideoSnippet", snippet: data });
   };
 
   const handleClick = (video) => {
@@ -73,7 +72,7 @@ const MediaCard = ({ songs, categotyTitle }) => {
             />
             <CardContent>
               <Typography gutterBottom variant="body2" component="p">
-                {song.snippet.title.slice(0, 70) + ' ...'}
+                {song.snippet.title.slice(0, 70) + " ..."}
               </Typography>
             </CardContent>
           </CardActionArea>
@@ -82,15 +81,15 @@ const MediaCard = ({ songs, categotyTitle }) => {
     });
     return (
       <>
-        <Typography variant="h5" style={{ marginLeft: '15px' }}>
+        <Typography variant="h5" style={{ marginLeft: "15px" }}>
           {categotyTitle}
         </Typography>
-        <div className={'cardSlider'}>{renderCards}</div>
+        <div className={"cardSlider"}>{renderCards}</div>
       </>
     );
   } else {
     return (
-      <Container style={{ height: '25vh' }}>
+      <Container style={{ height: "25vh" }}>
         <LinearProgress color="primary" />
       </Container>
     );

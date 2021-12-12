@@ -1,16 +1,13 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from "react";
 // import {
 //   List,
 //   AutoSizer,
 //   CellMeasurer,
 //   CellMeasurerCache
 // } from "react-virtualized";
-
-import { DynamicSizeList as List } from 'react-window-dynamic';
-
-import CompletedTick from '../images/CompletedTick.svg';
-import DownloadIcon from '../images/DownloadIcon.svg';
-
+import { DynamicSizeList as List } from "react-window-dynamic";
+import CompletedTick from "../images/CompletedTick.svg";
+import DownloadIcon from "../images/DownloadIcon.svg";
 import {
   ListItem,
   Typography,
@@ -18,14 +15,11 @@ import {
   Avatar,
   Divider,
   ListItemText,
-} from '@material-ui/core';
-
-import DownloadDeleteDialog from './DownloadDeleteDialog';
-
-import { GlobalContext } from './GlobalState';
-
-import getAudioLink from '../apis/getAudioLink';
-import { downloadSong, deleteSongAudio } from '../external/saveSong';
+} from "@material-ui/core";
+import DownloadDeleteDialog from "./DownloadDeleteDialog";
+import { GlobalContext } from "./GlobalState";
+import getAudioLink from "../apis/getAudioLink";
+import { downloadSong, deleteSongAudio } from "../external/saveSong";
 
 // const cache = new CellMeasurerCache({
 //   minHeight: 50,
@@ -41,7 +35,7 @@ export const useSongMethods = (songId) => {
 
   const setSnackbarMsg = React.useCallback(
     (data) => {
-      dispatch({ type: 'setSnackbarMsg', snippet: data });
+      dispatch({ type: "setSnackbarMsg", snippet: data });
     },
     [dispatch]
   );
@@ -51,14 +45,14 @@ export const useSongMethods = (songId) => {
 
   useEffect(() => {
     //convert string to bool
-    const popupLocalState = localStorage.getItem('dontAskPopup') === 'true';
+    const popupLocalState = localStorage.getItem("dontAskPopup") === "true";
     setDontAskPopup(popupLocalState);
     // for popup settings
   }, []);
 
   const handleDownload = async (songId) => {
     // // console.log("here is the id", songId);
-    const res = await getAudioLink.get('/song', {
+    const res = await getAudioLink.get("/song", {
       params: { id: songId },
     });
     // first we will fetch the song link then we will download it
@@ -66,19 +60,19 @@ export const useSongMethods = (songId) => {
     const status = await downloadSong(songId, res.data);
     // after the downloading is done we will remove the downloading class
     // set the snackbar message
-    setSnackbarMsg('Song Downloaded');
+    setSnackbarMsg("Song Downloaded");
     // console.log("song status", status);
   };
 
   const disablePopup = () => {
-    localStorage.setItem('dontAskPopup', true);
+    localStorage.setItem("dontAskPopup", true);
     setDontAskPopup(true);
   };
 
   const deleteTheSong = async (checkBox) => {
     const deleted = await deleteSongAudio(currentId);
     setDeleteDialogState(false);
-    setSnackbarMsg('Deleted Successfully');
+    setSnackbarMsg("Deleted Successfully");
 
     // console.log(currentId, checkBox);
     // we will set it to localstorage the popup option
@@ -120,10 +114,10 @@ const RenderDatabase = (props) => {
   const songs = props.songs;
   const [{}, dispatch] = useContext(GlobalContext);
   const setCurrentVideoSnippet = (data) => {
-    dispatch({ type: 'setCurrentVideoSnippet', snippet: data });
+    dispatch({ type: "setCurrentVideoSnippet", snippet: data });
   };
   const setSnackbarMsg = (data) => {
-    dispatch({ type: 'setSnakbarMsg', snippet: data });
+    dispatch({ type: "setSnakbarMsg", snippet: data });
   };
 
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
@@ -142,18 +136,15 @@ const RenderDatabase = (props) => {
     });
   };
 
-  const {
-    handleDownload,
-    handleRemoveSong,
-    deleteDialogComponent,
-  } = useSongMethods();
+  const { handleDownload, handleRemoveSong, deleteDialogComponent } =
+    useSongMethods();
 
   const returnAnimatedClass = (song) => {
-    if (song.downloadState === 'downloading') {
+    if (song.downloadState === "downloading") {
       // console.log(song.downloadState);
-      return 'downloading-animation';
+      return "downloading-animation";
     } else {
-      return '';
+      return "";
     }
   };
 
@@ -174,7 +165,7 @@ const RenderDatabase = (props) => {
           <ListItemAvatar>
             <Avatar
               className="searchThumb"
-              style={{ width: '60px', height: '60px', marginRight: '15px' }}
+              style={{ width: "60px", height: "60px", marginRight: "15px" }}
               alt={song.title}
               src={`https://img.youtube.com/vi/${song.videoId}/default.jpg`}
             />
@@ -221,9 +212,9 @@ const RenderDatabase = (props) => {
       ref={ref}
       style={{
         ...row.style,
-        maxWidth: '1000px',
-        left: '50%',
-        transform: 'translateX(-50%)',
+        maxWidth: "1000px",
+        left: "50%",
+        transform: "translateX(-50%)",
       }}
     >
       {renderResult[row.index]}

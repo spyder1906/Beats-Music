@@ -4,7 +4,7 @@ import axios from "axios";
 export const selectRandomKey = () => {
   console.log(process.env.REACT_APP_YouTube_Keys, "abc");
   const ytApi =
-    "AIzaSyA1HrjcCL-ZwOrSA76v8owYl5277QeS1dg AIzaSyB5ioCpD2eHiIlMk74LSa9Jy0ObP-V-ch8 AIzaSyC-3VwhGp4OXHkM8AFmDO0Vd8QHiKhwYRc";
+    "AIzaSyA1HrjcCL-ZwOrSA76v8owYl5277QeS1dg AIzaSyB5ioCpD2eHiIlMk74LSa9Jy0ObP-V-ch8 AIzaSyC-3VwhGp4OXHkM8AFmDO0Vd8QHiKhwYRc AIzaSyA-cdyaxnFJykPEzZXZZdx-MVdnetCPeU4";
   const keys = ytApi.split(" "); //we are splitting the api keys to make an array
   const random = Math.floor(Math.random() * Math.floor(keys.length)); //this will get a random number
   return keys[random];
@@ -19,4 +19,3 @@ export default axios.create({
     key: selectRandomKey(),
   },
 });
-// AIzaSyCNg2DOCek5dez0-XKcGA5ZfuVkgs68qo4 AIzaSyBy9iWXJYAfO8NBiSfUfRQ2ODP_l_yxFnc AIzaSyBGv-DrOkacKdOoPexXXscSs-_OSAYw-bQ

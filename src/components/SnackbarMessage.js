@@ -1,8 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
-
-import { Snackbar } from '@material-ui/core';
-
-import { GlobalContext } from './GlobalState';
+import React, { useContext, useState, useEffect } from "react";
+import { Snackbar } from "@material-ui/core";
+import { GlobalContext } from "./GlobalState";
 
 const SnackbarMessage = () => {
   const [isOpen, setOpen] = useState(false);
@@ -10,7 +8,7 @@ const SnackbarMessage = () => {
 
   const setSnackbarMsg = React.useCallback(
     (data) => {
-      dispatch({ type: 'setSnackbarMsg', snippet: data });
+      dispatch({ type: "setSnackbarMsg", snippet: data });
     },
     [dispatch]
   );
@@ -29,13 +27,13 @@ const SnackbarMessage = () => {
   return (
     <Snackbar
       anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'center',
+        vertical: "bottom",
+        horizontal: "center",
       }}
       autoHideDuration={3000}
       open={isOpen}
       ContentProps={{
-        'aria-describedby': 'message-id',
+        "aria-describedby": "message-id",
       }}
       onClose={handleClose}
       message={<span id="message-id">{snackbarMsg}</span>}

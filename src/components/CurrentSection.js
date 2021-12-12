@@ -5,67 +5,62 @@ import React, {
   useCallback,
   Suspense,
   lazy,
-} from 'react';
-
+} from "react";
 import {
   BrowserRouter as Router,
   withRouter,
   Route,
   Link,
   Switch,
-} from 'react-router-dom';
-
-import { AnimatePresence } from 'framer-motion';
+} from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import {
   Tabs,
   Tab,
   withStyles,
   Grid,
   CircularProgress,
-} from '@material-ui/core';
-
+} from "@material-ui/core";
 import {
   Home,
   Favorite,
   VideoLibrary,
   History,
   GetApp,
-} from '@material-ui/icons/';
-
-import { GlobalContext } from './GlobalState';
+} from "@material-ui/icons/";
+import { GlobalContext } from "./GlobalState";
 import {
   getHistory,
   getLikedSongs,
   getDownloadedSongs,
   removeDownloadingState,
   db,
-} from '../external/saveSong';
-
-import SettingsPage from './sections/SettingsPage';
+} from "../external/saveSong";
+import SettingsPage from "./sections/SettingsPage";
 // import the db from save song
-import MainPlayer from '../components/player/MainPlayer';
+import MainPlayer from "../components/player/MainPlayer";
 // pages
-const LoginPage = lazy(() => import('./LoginPage'));
-const RenderDatabase = lazy(() => import('./RenderDatabase'));
-const SearchResult = lazy(() => import('./SearchResult'));
-const HomePage = lazy(() => import('./sections/HomePage'));
-const FeedbackForm = lazy(() => import('./sections/FeedbackForm'));
-const PrivacyPage = lazy(() => import('./sections/PrivacyPage'));
-const DonatePage = lazy(() => import('./sections/DonatePage'));
-const ContributorsPage = lazy(() => import('./sections/ContributorsPage'));
+const LoginPage = lazy(() => import("./LoginPage"));
+const RenderDatabase = lazy(() => import("./RenderDatabase"));
+const SearchResult = lazy(() => import("./SearchResult"));
+const HomePage = lazy(() => import("./sections/HomePage"));
+const FeedbackForm = lazy(() => import("./sections/FeedbackForm"));
+const PrivacyPage = lazy(() => import("./sections/PrivacyPage"));
+const DonatePage = lazy(() => import("./sections/DonatePage"));
+const ContributorsPage = lazy(() => import("./sections/ContributorsPage"));
 
 // custom styling the tab menus
 const CustomTab = withStyles({
   root: {
-    background: '#e91e63',
-    position: 'fixed',
-    bottom: '0',
+    background: "#e91e63",
+    position: "fixed",
+    bottom: "0",
     padding: 0,
-    width: '100%',
+    width: "100%",
     zIndex: 1300,
   },
   indicator: {
-    display: 'none',
+    display: "none",
   },
   labelIcon: {
     margin: 0,
@@ -74,19 +69,19 @@ const CustomTab = withStyles({
 
 const CustomTabs = withStyles({
   root: {
-    color: '#FFB2C1',
-    fontSize: '.75rem',
+    color: "#FFB2C1",
+    fontSize: ".75rem",
     margin: 0,
 
-    '&:hover': {
-      color: '#ffffffed',
+    "&:hover": {
+      color: "#ffffffed",
       opacity: 1,
     },
-    '&$selected': {
-      color: '#fff',
+    "&$selected": {
+      color: "#fff",
     },
-    '&:focus': {
-      color: '#FFFFFF',
+    "&:focus": {
+      color: "#FFFFFF",
     },
   },
 
@@ -96,7 +91,7 @@ const CustomTabs = withStyles({
 let deferredPrompt = undefined;
 let previousLocation;
 
-window.addEventListener('beforeinstallprompt', (e) => {
+window.addEventListener("beforeinstallprompt", (e) => {
   // Stash the event so it can be triggered later.
   deferredPrompt = e;
 });
@@ -114,7 +109,7 @@ const CurrentSection = ({ history, location }) => {
 
   const circularLoader = (
     <Grid
-      style={{ height: '100vh' }}
+      style={{ height: "100vh" }}
       container
       justify="center"
       alignItems="center"
@@ -157,20 +152,20 @@ const CurrentSection = ({ history, location }) => {
   }, [updateCount, fetchSongs]);
 
   useEffect(() => {
-    db.on('changes', () => {
+    db.on("changes", () => {
       setUpdateCount((c) => c + 1);
     });
     // will remove all the songs which are downloading in the first place
     removeDownloadingState();
 
-    const isThisNewUser = localStorage.getItem('isThisNew');
-    if (isThisNewUser === 'no') {
+    const isThisNewUser = localStorage.getItem("isThisNew");
+    if (isThisNewUser === "no") {
       setRedirectState(true);
     }
     // if this is not a new user redirect it to home
     previousLocation = location;
     history.listen((location) => {
-      if (location.pathname !== '/play') {
+      if (location.pathname !== "/play") {
         previousLocation = location;
         // console.log(previousLocation);
       }
@@ -179,15 +174,15 @@ const CurrentSection = ({ history, location }) => {
 
   useEffect(() => {
     // we will redirect everytime user comes to root page
-    if (redirectState && history.location.pathname === '/') {
-      history.replace('/home');
+    if (redirectState && history.location.pathname === "/") {
+      history.replace("/home");
     }
 
     // if the location is not play then we will push new location
   }, [setRedirectState, history, redirectState]);
 
   const checkPrevLocation = () => {
-    if (location.pathname === '/play') {
+    if (location.pathname === "/play") {
       return previousLocation;
     } else {
       return location;
@@ -196,15 +191,15 @@ const CurrentSection = ({ history, location }) => {
 
   // we will load the homepage with all the playlists
   const continueToHome = () => {
-    localStorage.setItem('isThisNew', 'no');
-    history.replace('/home');
+    localStorage.setItem("isThisNew", "no");
+    history.replace("/home");
 
     if (deferredPrompt) {
       // show the prompt to install app
       deferredPrompt.prompt();
       // Wait for the user to respond to the prompt
       deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
+        if (choiceResult.outcome === "accepted") {
           // console.log("User accepted the A2HS prompt");
         } else {
           // console.log("User dismissed the A2HS prompt");
@@ -217,7 +212,7 @@ const CurrentSection = ({ history, location }) => {
   const returnMainPlayer = (props) => {
     // we will return the main player if the path is not the "/"
 
-    if (window.location.pathname !== '/') {
+    if (window.location.pathname !== "/") {
       return <MainPlayer {...props} />;
     } else {
       return null;
@@ -289,7 +284,7 @@ const CurrentSection = ({ history, location }) => {
             path="/app"
             render={(props) => {
               window.location.replace(
-                'https://play.google.com/store/apps/details?id=com.ylightmusic.app'
+                "https://play.google.com/store/apps/details?id=com.ylightmusic.app"
               );
               return <div>Redirecting you to play store</div>;
             }}
@@ -304,7 +299,7 @@ const CurrentSection = ({ history, location }) => {
         </Switch>
         <Route path="/" render={(props) => returnMainPlayer(props)} />
 
-        <div style={{ height: currentVideoSnippet.id ? '100px' : '50px' }} />
+        <div style={{ height: currentVideoSnippet.id ? "100px" : "50px" }} />
       </Suspense>
       {/* if the player is on then return 100px else 50px*/}
       <CustomTab

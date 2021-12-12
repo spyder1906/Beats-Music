@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
-import { withRouter } from 'react-router-dom';
-import { GlobalContext } from '../GlobalState';
-
-import SearchBox from './SearchBox';
-import PropTypes from 'prop-types';
+import React, { useContext } from "react";
+import { withRouter } from "react-router-dom";
+import { GlobalContext } from "../GlobalState";
+import SearchBox from "./SearchBox";
+import PropTypes from "prop-types";
 import {
   withStyles,
   AppBar,
@@ -11,22 +10,20 @@ import {
   Typography,
   IconButton,
   Slide,
-} from '@material-ui/core/';
-
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-
-import { Menu, Search } from '@material-ui/icons/';
+} from "@material-ui/core/";
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import { Menu, Search } from "@material-ui/icons/";
 
 const styles = {
   root: {
     flexGrow: 1,
   },
   title: {
-    textAlign: 'center',
-    width: 'calc(100% - 96px)',
+    textAlign: "center",
+    width: "calc(100% - 96px)",
   },
   input: {
-    color: '#fff',
+    color: "#fff",
   },
 };
 
@@ -46,12 +43,12 @@ function SimpleAppBar(props) {
 
   const setMenuOpen = (data) => {
     // console.log(data);
-    dispatch({ type: 'setMenuOpen', snippet: data });
+    dispatch({ type: "setMenuOpen", snippet: data });
   };
   const setSearchState = React.useCallback(
     (data) => {
       // console.log(data);
-      dispatch({ type: 'setSearchState', snippet: data });
+      dispatch({ type: "setSearchState", snippet: data });
     },
     [dispatch]
   );
@@ -60,10 +57,10 @@ function SimpleAppBar(props) {
     // if the page is on search we will change the search state
     const changeAppBar = () => {
       const path = props.history.location.pathname;
-      if (path === '/search') {
-        setSearchState('searching');
+      if (path === "/search") {
+        setSearchState("searching");
       } else {
-        setSearchState('home');
+        setSearchState("home");
       }
       // console.log("history change detected in app bar");
     };
@@ -75,7 +72,7 @@ function SimpleAppBar(props) {
   }, [setSearchState, props.history]);
 
   const toggleSearch = () => {
-    if (searchState === 'home') {
+    if (searchState === "home") {
       return (
         <>
           <IconButton
@@ -89,7 +86,7 @@ function SimpleAppBar(props) {
             Beats Music
           </Typography>
           <IconButton
-            onClick={() => setSearchState('clicked')}
+            onClick={() => setSearchState("clicked")}
             color="inherit"
             aria-label="Search"
           >

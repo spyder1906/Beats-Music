@@ -9,13 +9,13 @@ import { rateSong } from "../../external/saveSong";
 const dblTouchTapMaxDelay = 300;
 let latestTouchTap = {
   time: 0,
-  target: null
+  target: null,
 };
 
 function isDblTouchTap(event) {
   const touchTap = {
     time: new Date().getTime(),
-    target: event.currentTarget
+    target: event.currentTarget,
   };
   const isFastDblTouchTap =
     touchTap.target === latestTouchTap.target &&
@@ -28,13 +28,13 @@ let initialPosition;
 
 const MusicArt = ({ data, rating, audioEl }) => {
   const swipeUpHandler = useSwipeable({
-    onSwipedUp: e => {
+    onSwipedUp: (e) => {
       dislikeSong();
-    }
+    },
   });
 
   const [heartStyle, setHeartStyle] = useState({
-    transform: "scale(0)"
+    transform: "scale(0)",
   });
   // const [artContainerStyle, setArtContainerStyle] = useState({
   //   background: `url(${circleSvg}) no-repeat`,
@@ -48,11 +48,11 @@ const MusicArt = ({ data, rating, audioEl }) => {
     background: `url(${circleSvg}) no-repeat`,
     padding: "18px",
     position: "relative",
-    zIndex: "1"
+    zIndex: "1",
   };
 
   // if its less than 400 width we will use default hq thumbnail
-  const checkImg = e => {
+  const checkImg = (e) => {
     if (e.target.naturalWidth < 400) {
       e.target.src = data.sdThumbnail;
     }
@@ -87,7 +87,7 @@ const MusicArt = ({ data, rating, audioEl }) => {
 
   // if we find the channel name is before the song title we will remove it
   //using the regex
-  const shortTitle = data => {
+  const shortTitle = (data) => {
     // this regex is to remove channel name from song title
     const re = new RegExp(data.channelTitle + " - | : ", "g");
 
@@ -110,7 +110,7 @@ const MusicArt = ({ data, rating, audioEl }) => {
       justify="center"
       alignItems="center"
       style={{ marginTop: "40px" }}
-      onClick={e => {
+      onClick={(e) => {
         if (isDblTouchTap(e)) {
           likeSong();
           rateSong(data.id, "liked", audioEl);
@@ -134,15 +134,20 @@ const MusicArt = ({ data, rating, audioEl }) => {
           style={{
             width: "215px",
             height: "215px",
-            boxShadow: "#0000008c 1px 3px 8px"
+            boxShadow: "#0000008c 1px 3px 8px",
           }}
           alt="video thumbnail"
           src={getThumbnail()}
-          imgProps={{ onLoad: e => checkImg(e) }}
+          imgProps={{ onLoad: (e) => checkImg(e) }}
         />
       </motion.div>
       <br />
-      <Typography color="primary" variant="h5" className="musicArtTitle" align="center">
+      <Typography
+        color="primary"
+        variant="h5"
+        className="musicArtTitle"
+        align="center"
+      >
         {shortTitle(data)}
       </Typography>
       <Typography color="primary" variant="subtitle1">

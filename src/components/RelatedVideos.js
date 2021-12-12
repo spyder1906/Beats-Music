@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
 import {
   List,
   ListItem,
@@ -12,7 +11,6 @@ import {
   Divider,
   LinearProgress,
 } from "@material-ui/core";
-
 import {
   MusicVideo,
   LibraryMusic,
@@ -22,7 +20,6 @@ import {
   KeyboardArrowDown,
   RepeatOne,
 } from "@material-ui/icons";
-
 import { GlobalContext } from "./GlobalState";
 
 let renderResult;

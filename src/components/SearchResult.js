@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
-import { motion, useCycle } from 'framer-motion';
-
-import { GlobalContext } from './GlobalState';
-
-import '../style.css';
+import React, { useContext } from "react";
+import { motion, useCycle } from "framer-motion";
+import { GlobalContext } from "./GlobalState";
+import "../style.css";
 import {
   ListItem,
   Typography,
@@ -11,9 +9,9 @@ import {
   Avatar,
   Divider,
   ListItemText,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
-const Entities = require('html-entities').XmlEntities;
+const Entities = require("html-entities").XmlEntities;
 const entities = new Entities();
 
 const liVariants = {
@@ -47,16 +45,16 @@ const SearchResult = ({ videos }) => {
 
   const [{}, dispatch] = useContext(GlobalContext);
   const setCurrentVideoSnippet = (data) => {
-    dispatch({ type: 'setCurrentVideoSnippet', snippet: data });
+    dispatch({ type: "setCurrentVideoSnippet", snippet: data });
   };
 
   const handleClick = (video) => {
     // set all the info of current clicked video in this object
     setCurrentVideoSnippet({
       id: video.id.videoId,
-      title: entities.decode(video.snippet.title, { level: 'xml' }),
+      title: entities.decode(video.snippet.title, { level: "xml" }),
       channelTitle: entities.decode(video.snippet.channelTitle, {
-        level: 'xml',
+        level: "xml",
       }),
       maxThumbnail: `https://img.youtube.com/vi/${video.id.videoId}/maxresdefault.jpg`,
       sdThumbnail: `https://img.youtube.com/vi/${video.id.videoId}/sddefault.jpg`,
@@ -85,13 +83,13 @@ const SearchResult = ({ videos }) => {
           <ListItemAvatar>
             <Avatar
               className="searchThumb"
-              style={{ width: '60px', height: '60px', marginRight: '15px' }}
+              style={{ width: "60px", height: "60px", marginRight: "15px" }}
               alt={snippet.title}
               src={snippet.thumbnails.high.url}
             />
           </ListItemAvatar>
           <ListItemText
-            primary={entities.decode(snippet.title, { level: 'xml' })}
+            primary={entities.decode(snippet.title, { level: "xml" })}
             secondary={
               <>
                 <Typography
@@ -114,7 +112,7 @@ const SearchResult = ({ videos }) => {
     <motion.div
       variants={ulVariants}
       initial={false}
-      animate={isOpen ? 'open' : 'closed'}
+      animate={isOpen ? "open" : "closed"}
     >
       {renderResult}
     </motion.div>

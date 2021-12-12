@@ -1,22 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "./GlobalState";
-
 import { Button, Grid, Typography } from "@material-ui/core";
 import { NavigateNext } from "@material-ui/icons";
 import bgImg from "../images/music-bg.svg";
 import gIcon from "../images/google.svg";
 import handcraftedText from "../images/craftedImg.png";
-
 // import GoogleSignIn from "./GoogleSignIn";
 
 const bgStyle = {
   background: `url(${bgImg}) no-repeat`,
   backgroundPositionX: "50%",
   width: "100vw",
-  height: "46vh"
+  height: "46vh",
 };
-
-
 
 const LoginPage = ({ continueToHome }) => {
   // const showSignIn = () => {
@@ -49,7 +45,7 @@ const LoginPage = ({ continueToHome }) => {
       <img
         style={{
           width: "70vw",
-          maxWidth: "350px"
+          maxWidth: "350px",
         }}
         src={handcraftedText}
         alt="Handcrafted by Spyder"

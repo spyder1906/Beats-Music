@@ -1,5 +1,4 @@
 import React from "react";
-
 import "typeface-roboto";
 import { GlobalState } from "./GlobalState";
 import AppContainer from "./AppContainer";

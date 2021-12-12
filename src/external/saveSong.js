@@ -1,16 +1,16 @@
-import Dexie from 'dexie';
-import 'dexie-observable';
-import { promised } from 'q';
-import { promises } from 'fs';
+import Dexie from "dexie";
+import "dexie-observable";
+import { promised } from "q";
+import { promises } from "fs";
 
 // Define your database
-export const db = new Dexie('Song_Database');
+export const db = new Dexie("Song_Database");
 
 // create new databse
 // our schema is of storing a song
 db.version(1).stores({
   songs:
-    '&videoId, timestamp, playbackTimes, [rating+timestamp], [downloadState+timestamp]',
+    "&videoId, timestamp, playbackTimes, [rating+timestamp], [downloadState+timestamp]",
 });
 
 db.version(2).stores({});
@@ -53,7 +53,7 @@ export const rateSong = async (id, rating) => {
 
 export const getHistory = async () => {
   const songsByTimeStamp = await db.songs
-    .orderBy('timestamp')
+    .orderBy("timestamp")
     .limit(500)
     .reverse()
     .toArray();
@@ -62,8 +62,8 @@ export const getHistory = async () => {
 
 export const getLikedSongs = async () => {
   const likedSongs = await db.songs
-    .where('[rating+timestamp]') //this will filter song based on time and liked
-    .between(['liked', Dexie.minKey], ['liked', Dexie.maxKey])
+    .where("[rating+timestamp]") //this will filter song based on time and liked
+    .between(["liked", Dexie.minKey], ["liked", Dexie.maxKey])
     .reverse()
     .toArray();
   return likedSongs;
@@ -71,8 +71,8 @@ export const getLikedSongs = async () => {
 
 export const getDownloadedSongs = async () => {
   const downloadedSongs = await db.songs
-    .where('[downloadState+timestamp]') //this will filter song based on time and downloaded
-    .between(['downloaded', Dexie.minKey], ['downloaded', Dexie.maxKey])
+    .where("[downloadState+timestamp]") //this will filter song based on time and downloaded
+    .between(["downloaded", Dexie.minKey], ["downloaded", Dexie.maxKey])
     .reverse()
     .toArray();
   return downloadedSongs;
@@ -81,8 +81,8 @@ export const getDownloadedSongs = async () => {
 export const removeDownloadingState = async () => {
   // find all the downloadState which is downloading and remove that
   const songs = await db.songs
-    .where('[downloadState+timestamp]')
-    .between(['downloading', Dexie.minKey], ['downloading', Dexie.maxKey])
+    .where("[downloadState+timestamp]")
+    .between(["downloading", Dexie.minKey], ["downloading", Dexie.maxKey])
     .modify((x) => {
       delete x.downloadState;
     });
@@ -92,7 +92,7 @@ export const removeDownloadingState = async () => {
 export const downloadSong = async (id, url) => {
   try {
     db.songs.update(id, {
-      downloadState: 'downloading',
+      downloadState: "downloading",
     });
     const thumbURL = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
     const [thumbnailBlob, songBlob] = await Promise.all([
@@ -100,11 +100,11 @@ export const downloadSong = async (id, url) => {
       fetchProxiedBlob(url),
     ]);
     db.songs.update(id, {
-      downloadState: 'downloaded',
+      downloadState: "downloaded",
       thumbnail: thumbnailBlob,
       audio: songBlob,
     });
-    return 'downloaded';
+    return "downloaded";
   } catch (error) {
     return error;
   }
@@ -115,7 +115,7 @@ export const deleteSongAudio = async (id) => {
     delete x.audio;
     delete x.downloadState;
   });
-  return 'song deleted';
+  return "song deleted";
 };
 
 function fetchProxiedBlob(url) {
@@ -123,8 +123,8 @@ function fetchProxiedBlob(url) {
   return new Promise(function (resolve, reject) {
     var xhr = new XMLHttpRequest();
     // xhr.open('GET', 'https://server.ylight.xyz/proxy/' + URL);
-    xhr.open('GET', 'http://localhost:8000' + URL);
-    xhr.responseType = 'blob';
+    xhr.open("GET", "http://localhost:8000" + URL);
+    xhr.responseType = "blob";
     xhr.onload = function () {
       var status = xhr.status;
       if (status >= 200 && status < 300) {
@@ -140,7 +140,7 @@ function fetchProxiedBlob(url) {
     setTimeout(() => {
       xhr.abort();
       // xhr.open('GET', 'https://server.ylight.xyz/proxy/' + URL);
-      xhr.open('GET', 'http://localhost:8000' + URL);
+      xhr.open("GET", "http://localhost:8000" + URL);
       xhr.send();
     }, 1000);
   });

@@ -1,9 +1,7 @@
 import React from "react";
-
 import "typeface-roboto";
 import { GlobalState } from "./GlobalState";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
 import SimpleAppBar from "./header/SimpleAppBar";
 import MainPlayer from "./player/MainPlayer";
 import SwipeMenu from "./SwipeMenu";
@@ -11,7 +9,6 @@ import CurrentSection from "./CurrentSection";
 import SnackbarMessage from "./SnackbarMessage";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { pink } from "@material-ui/core/colors";
-
 import { useCheckDarkmode } from "./sections/SettingsPage";
 import { GlobalContext } from "./GlobalState";
 
@@ -21,12 +18,12 @@ const defaultTheme = {
   palette: {
     primary: pink,
     secondary: {
-      main: "#fafafa"
-    }
+      main: "#fafafa",
+    },
   },
   typography: {
-    useNextVariants: true
-  }
+    useNextVariants: true,
+  },
 };
 
 const darkTheme = {
@@ -34,12 +31,12 @@ const darkTheme = {
     type: "dark",
     primary: pink,
     secondary: {
-      main: "#fafafa"
-    }
+      main: "#fafafa",
+    },
   },
   typography: {
-    useNextVariants: true
-  }
+    useNextVariants: true,
+  },
 };
 
 function App() {

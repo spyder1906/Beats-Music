@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Grid,
-  Container,
-  Typography,
-  Avatar,
-  Divider,
-  Link
-} from "@material-ui/core";
+import { Grid, Typography, Avatar, Divider, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { pink } from "@material-ui/core/colors";
 
@@ -14,19 +7,19 @@ const useStyles = makeStyles({
   avatar: {
     margin: 10,
     width: 80,
-    height: 80
+    height: 80,
   },
   avatatContainer: {
-    width: "50%"
+    width: "50%",
   },
   divider: {
     width: "100%",
-    margin: 10
+    margin: 10,
   },
   miniContainer: {
     margin: 10,
     "& div": {
-      margin: "2px"
+      margin: "2px",
     },
     "& .MuiAvatar-root": {
       // width: 50,
@@ -34,9 +27,9 @@ const useStyles = makeStyles({
       marginRight: 20,
       marginLeft: 10,
       background: pink[500],
-      color: "#fff"
-    }
-  }
+      color: "#fff",
+    },
+  },
 });
 
 const ContributorsPage = () => {
@@ -48,7 +41,7 @@ const ContributorsPage = () => {
       <Grid container justify="center">
         <Grid
           component={Link}
-          href="https://github.com/shivamjoker"
+          href="https://github.com/spyder1906"
           target="blank"
           container
           direction="column"
@@ -58,45 +51,15 @@ const ContributorsPage = () => {
         >
           <Avatar
             className={classes.avatar}
-            src="https://avatars2.githubusercontent.com/u/23727670?s=300"
+            src="https://avatars.githubusercontent.com/u/67554647?s=400&u=9a2deb52731cadbfad273a2b2ea234c40b1b1bc9&v=4"
           />
           <Typography variant="h5">Spyder</Typography>
           <Typography>Creator of Beats Music</Typography>
-        </Grid>
-
-        <Grid
-          container
-          direction="column"
-          alignItems="center"
-          className={classes.avatatContainer}
-          component={Link}
-          href="https://github.com/bushblade"
-          target="blank"
-          color="inherit"
-        >
-          <Avatar
-            className={classes.avatar}
-            src="https://avatars2.githubusercontent.com/u/21976188?s=300"
-          />
-          <Typography variant="h5">Will Adams</Typography>
-          <Typography>Helped in writing code</Typography>
         </Grid>
         <Divider className={classes.divider} />
         <Typography variant="h5">Other Contributors</Typography>
 
         <Grid container className={classes.miniContainer}>
-          <Grid container alignItems="center">
-            <Avatar>R</Avatar>
-            <Typography variant="h6">Razvan</Typography>
-          </Grid>
-          <Grid container alignItems="center">
-            <Avatar>S</Avatar>
-            <Typography variant="h6">Shantanu</Typography>
-          </Grid>
-          <Grid container alignItems="center">
-            <Avatar>P</Avatar>
-            <Typography variant="h6">Piyush</Typography>
-          </Grid>
           <Grid container alignItems="center">
             <Avatar>Z</Avatar>
             <Typography variant="h6">Zaid</Typography>

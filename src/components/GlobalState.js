@@ -9,7 +9,7 @@ const initialState = {
   menuOpen: false,
   snackbarMsg: false,
   currentVideoSnippet: {},
-  themeSelectValue: "Default"
+  themeSelectValue: "Default",
 };
 
 const reducer = (state, action) => {
@@ -17,43 +17,43 @@ const reducer = (state, action) => {
     case "setCurrentVideoSnippet":
       return {
         ...state,
-        currentVideoSnippet: action.snippet
+        currentVideoSnippet: action.snippet,
       };
 
     case "setRelatedVideos": {
       return {
         ...state,
-        relatedVideos: action.snippet
+        relatedVideos: action.snippet,
       };
     }
     case "setSnackbarMsg": {
       return {
         ...state,
-        snackbarMsg: action.snippet
+        snackbarMsg: action.snippet,
       };
     }
     case "setThemeSelectValue": {
       return {
         ...state,
-        themeSelectValue: action.snippet
+        themeSelectValue: action.snippet,
       };
     }
     case "setSearchState": {
       return {
         ...state,
-        searchState: action.snippet
+        searchState: action.snippet,
       };
     }
     case "setSearchResult": {
       return {
         ...state,
-        searchResult: action.snippet
+        searchResult: action.snippet,
       };
     }
     case "setMenuOpen": {
       return {
         ...state,
-        menuOpen: action.snippet
+        menuOpen: action.snippet,
       };
     }
     default:
@@ -61,7 +61,7 @@ const reducer = (state, action) => {
   }
 };
 
-export const GlobalState = props => {
+export const GlobalState = (props) => {
   const globalState = useReducer(reducer, initialState);
   return (
     <GlobalContext.Provider value={globalState}>

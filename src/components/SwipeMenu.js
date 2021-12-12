@@ -1,30 +1,16 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
-
 import {
   SwipeableDrawer,
-  Avatar,
   Divider,
-  Button,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Link as MaterialLink
+  Link as MaterialLink,
 } from "@material-ui/core";
-
-import {
-  AccountCircle,
-  Feedback,
-  Info,
-  FreeBreakfast,
-  People,
-  Settings
-} from "@material-ui/icons";
-
+import { Feedback, Info, People, Settings } from "@material-ui/icons";
 import { motion, AnimatePresence } from "framer-motion";
-
 import { Link } from "react-router-dom";
-
 import { GlobalContext } from "./GlobalState";
 import "./darkMode.css";
 import moon from "../images/moon-solid.svg";
@@ -33,12 +19,12 @@ import sun from "../images/sun-solid.svg";
 const SwipeMenu = () => {
   const [{ menuOpen, themeSelectValue }, dispatch] = useContext(GlobalContext);
 
-  const setMenuOpen = data => {
+  const setMenuOpen = (data) => {
     dispatch({ type: "setMenuOpen", snippet: data });
   };
 
   const setThemeSelectValue = useCallback(
-    data => {
+    (data) => {
       dispatch({ type: "setThemeSelectValue", snippet: data });
     },
     [dispatch]
@@ -54,7 +40,7 @@ const SwipeMenu = () => {
     }
   }, [themeSelectValue]);
 
-  const changeTheme = theme => {
+  const changeTheme = (theme) => {
     setThemeSelectValue(theme);
     localStorage.setItem("selectedTheme", theme);
   };
@@ -81,7 +67,7 @@ const SwipeMenu = () => {
             margin: "35px",
             position: "relative",
             width: "30px",
-            height: "30px"
+            height: "30px",
           }}
         >
           <AnimatePresence>
@@ -118,12 +104,6 @@ const SwipeMenu = () => {
             </ListItemIcon>
             <ListItemText primary="Feedback" />
           </ListItem>
-          <ListItem button component={Link} to="/donate">
-            <ListItemIcon>
-              <FreeBreakfast />
-            </ListItemIcon>
-            <ListItemText primary="Donate & Support" />
-          </ListItem>
           <ListItem button component={Link} to="/contributors">
             <ListItemIcon>
               <People />
@@ -134,7 +114,7 @@ const SwipeMenu = () => {
             button
             component={MaterialLink}
             target="blank"
-            href="https://github.com/ShivamJoker/Ylight-Music-Client"
+            href="https://github.com/spyder1906/Beats-Music"
           >
             <ListItemIcon>
               <svg

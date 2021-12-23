@@ -42,17 +42,10 @@ const LoginPage = ({ continueToHome }) => {
       >
         Listen to unlimited songs without any ads for free only on Beats Music
       </Typography>
-      <img
-        style={{
-          width: "70vw",
-          maxWidth: "350px",
-        }}
-        src={handcraftedText}
-        alt="Handcrafted by Spyder"
-      />
+      <div className="handcrafted">Handcrafted by Parth Virani</div>
       <Button variant="outlined" color="primary" onClick={continueToHome}>
         Continue
-        <NavigateNext />
+      <NavigateNext />
       </Button>
     </Grid>
   );

@@ -174,6 +174,12 @@ div.grecaptcha-badge {
   left: 0;
 }
 
+.handcrafted {
+  font-size: 30px;
+  font-family: 'Corinthia', cursive;
+  color: #e91e63;
+}
+
 /* forcing style for bottom tab menu */
 div a.MuiTab-root{
   padding: 0;

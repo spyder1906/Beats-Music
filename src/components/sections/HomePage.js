@@ -4,10 +4,10 @@ import youtubeSearch from "../../apis/youtubeSearch";
 
 // make a permanent playlist object with few songs catergory
 const playlistsIds = {
-  LatestSongs: "PLFgquLnL59akA2PflFpeQG9L01VFg90wS",
-  RomanticSongs: "PL64G6j8ePNureM8YCKy5nRFyzYf8I2noy",
+  EnglishSongs: "PLhsz9CILh357zA1yMT-K5T9ZTNEU6Fl6n",
+  GujaratiSongs: "PLxDvyCZDEb1OZEchuNWH9Q4odT6ld2XzK",
   EdmSongs: "PLw-VjHDlEOgs658kAHR_LAaILBXb-s6Q5",
-  TopBolloywood: "PLcRN7uK9CFpPkvCc-08tWOQo6PAg4u0lA",
+  TopBolloywood: "RDCLAK5uy_n9Fbdw7e6ap-98_A-8JYBmPv64v-Uaq1g",
   TopPop: "PLDcnymzs18LU4Kexrs91TVdfnplU3I5zs",
   Reggaeton: "PLS_oEMUyvA728OZPmF9WPKjsGtfC75LiN",
 };
@@ -47,15 +47,15 @@ const HomePage = () => {
       });
     });
 
-    getPlayListItems(playlistsIds.LatestSongs).then((data) => {
+    getPlayListItems(playlistsIds.EnglishSongs).then((data) => {
       setSongObj((prevState) => {
-        return { ...prevState, ...{ latestSongs: data } };
+        return { ...prevState, ...{ englishSongs: data } };
       });
     });
 
-    getPlayListItems(playlistsIds.RomanticSongs).then((data) => {
+    getPlayListItems(playlistsIds.GujaratiSongs).then((data) => {
       setSongObj((prevState) => {
-        return { ...prevState, ...{ romanticSongs: data } };
+        return { ...prevState, ...{ gujaratiSongs: data } };
       });
     });
 
@@ -64,12 +64,6 @@ const HomePage = () => {
         return { ...prevState, ...{ topBolloywood: data } };
       });
     });
-
-    // getPlayListItems(playlistsIds.Reggaeton).then((data) => {
-    //   setSongObj((prevState) => {
-    //     return { ...prevState, ...{ reggaeton: data } };
-    //   });
-    // });
   };
 
   useEffect(() => {
@@ -116,13 +110,11 @@ const HomePage = () => {
       <br />
       <SongCard songs={songObj.trending} categotyTitle={"Trending Now"} />
 
-      <SongCard songs={songObj.latestSongs} categotyTitle={"Latest Music"} />
-
-      <SongCard songs={songObj.romanticSongs} categotyTitle={"Romantic Mood"} />
+      <SongCard songs={songObj.englishSongs} categotyTitle={"English Songs"} />
 
       <SongCard songs={songObj.topBolloywood} categotyTitle={"Top Bollywood"} />
 
-      {/* <SongCard songs={songObj.reggaeton} categotyTitle={'Reggaeton'} /> */}
+      <SongCard songs={songObj.gujaratiSongs} categotyTitle={"Gujarati Songs"} />
     </>
   );
 };

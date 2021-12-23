@@ -133,12 +133,6 @@ const SwipeMenu = () => {
             </ListItemIcon>
             <ListItemText primary="Github" />
           </ListItem>
-          <ListItem button component={Link} to="/privacy">
-            <ListItemIcon>
-              <Info />
-            </ListItemIcon>
-            <ListItemText primary="Privacy & Policy" />
-          </ListItem>
         </List>
       </div>
     </SwipeableDrawer>

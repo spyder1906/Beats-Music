@@ -19,7 +19,7 @@ import {
 import VolumeController from "./VolumeController";
 import { useSongMethods } from "../RenderDatabase";
 import { downloadSong } from "../../external/saveSong";
-import SleepTimer from './SleepTimer'
+// import SleepTimer from './SleepTimer'
 import { GlobalContext } from "../GlobalState";
 
 const DownloadLoader = withStyles({
@@ -89,7 +89,7 @@ const TopBar = ({ song, player, setPlayerState, history }) => {
         color="primary"
       />
       
-      <SleepTimer player={player}/>
+      {/* <SleepTimer player={player}/> */}
 
       <div>
         {isSongDownloaded ? (

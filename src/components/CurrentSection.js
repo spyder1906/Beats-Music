@@ -45,8 +45,6 @@ const RenderDatabase = lazy(() => import("./RenderDatabase"));
 const SearchResult = lazy(() => import("./SearchResult"));
 const HomePage = lazy(() => import("./sections/HomePage"));
 const FeedbackForm = lazy(() => import("./sections/FeedbackForm"));
-const PrivacyPage = lazy(() => import("./sections/PrivacyPage"));
-const DonatePage = lazy(() => import("./sections/DonatePage"));
 const ContributorsPage = lazy(() => import("./sections/ContributorsPage"));
 
 // custom styling the tab menus
@@ -291,10 +289,7 @@ const CurrentSection = ({ history, location }) => {
           />
 
           <Route path="/settings" component={SettingsPage} />
-          <Route path="/privacy" component={PrivacyPage} />
-
           <Route path="/feedback" component={FeedbackForm} />
-          <Route path="/donate" component={DonatePage} />
           <Route path="/contributors" component={ContributorsPage} />
         </Switch>
         <Route path="/" render={(props) => returnMainPlayer(props)} />

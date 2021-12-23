@@ -124,7 +124,7 @@ const MainPlayer = ({ location, history }) => {
 
       // set the audio data
       // const proxyURL = 'https://server.ylight.xyz/proxy/';
-      const proxyURL = "http://localhost:8000";
+      const proxyURL = "http://localhost:8000/proxy/";
       audioPlayer.current.src = res.data;
       playAudio();
 

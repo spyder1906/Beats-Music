@@ -123,7 +123,7 @@ function fetchProxiedBlob(url) {
   return new Promise(function (resolve, reject) {
     var xhr = new XMLHttpRequest();
     // xhr.open('GET', 'https://server.ylight.xyz/proxy/' + URL);
-    xhr.open("GET", "http://localhost:8000" + URL);
+    xhr.open("GET", "http://localhost:8000/proxy/" + URL);
     xhr.responseType = "blob";
     xhr.onload = function () {
       var status = xhr.status;
@@ -140,7 +140,7 @@ function fetchProxiedBlob(url) {
     setTimeout(() => {
       xhr.abort();
       // xhr.open('GET', 'https://server.ylight.xyz/proxy/' + URL);
-      xhr.open("GET", "http://localhost:8000" + URL);
+      xhr.open("GET", "http://localhost:8000/proxy/" + URL);
       xhr.send();
     }, 1000);
   });

@@ -61,7 +61,7 @@ export const useSongMethods = (songId) => {
     // after the downloading is done we will remove the downloading class
     // set the snackbar message
     setSnackbarMsg("Song Downloaded");
-    // console.log("song status", status);
+    console.log("song status", status);
   };
 
   const disablePopup = () => {

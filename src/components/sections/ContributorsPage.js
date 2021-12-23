@@ -53,18 +53,27 @@ const ContributorsPage = () => {
             className={classes.avatar}
             src="https://avatars.githubusercontent.com/u/67554647?s=400&u=9a2deb52731cadbfad273a2b2ea234c40b1b1bc9&v=4"
           />
-          <Typography variant="h5">Spyder</Typography>
+          <Typography variant="h5">Parth Virani</Typography>
           <Typography>Creator of Beats Music</Typography>
         </Grid>
-        <Divider className={classes.divider} />
-        <Typography variant="h5">Other Contributors</Typography>
 
-        <Grid container className={classes.miniContainer}>
-          <Grid container alignItems="center">
-            <Avatar>Z</Avatar>
-            <Typography variant="h6">Zaid</Typography>
-          </Grid>
-        </Grid>
+        {/* <Grid
+          container
+          direction="column"
+          alignItems="center"
+          className={classes.avatatContainer}
+          component={Link}
+          href="https://github.com/kowalskidev"
+          target="blank"
+          color="inherit"
+        >
+          <Avatar
+            className={classes.avatar}
+            src="https://avatars.githubusercontent.com/u/15380913?v=4"
+          />
+          <Typography variant="h5">Zaid Kesarani</Typography>
+          <Typography>Helped in writing code</Typography>
+        </Grid> */}
       </Grid>
     </>
   );
